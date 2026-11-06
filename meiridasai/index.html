@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日大赛主题大赛yandex-每日大赛热门主题_yandex大赛看点聚合</title>
+<meta name="description" content="每日大赛主题大赛yandex聚焦每日大赛的热门主题与讨论看点，汇总当日主题、话题变化与围观入口，帮助读者快速了解每日大赛主题大赛yandex的当前热点内容。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23151a2b'/%3E%3Cpath d='M18 40l8-16 6 10 5-8 9 14' stroke='%23ffcc4d' stroke-width='4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='46' cy='20' r='4' fill='%23ff6b4a'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#0f1320;
+  --bg-soft:#161c2e;
+  --card:#1b2236;
+  --line:#2b3450;
+  --text:#e8ecf6;
+  --muted:#9aa6c2;
+  --accent:#ffcc4d;
+  --accent2:#ff6b4a;
+  --radius:16px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+.wrap{width:min(1120px,92vw);margin:0 auto}
+
+/* header */
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(15,19,32,.88);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav{
+  display:flex;align-items:center;gap:22px;
+  padding:14px 0;
+}
+.logo{
+  display:flex;align-items:center;gap:10px;
+  font-weight:700;font-size:16px;letter-spacing:.2px;
+  white-space:nowrap;
+}
+.logo svg{flex:0 0 auto}
+.nav-links{
+  display:flex;gap:18px;margin-left:auto;
+  font-size:14px;color:var(--muted);
+}
+.nav-links a{padding:4px 0;border-bottom:2px solid transparent;transition:.2s}
+.nav-links a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.nav-cta{
+  font-size:13px;padding:7px 14px;border-radius:999px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#1a1205;font-weight:700;white-space:nowrap;
+}
+.menu-toggle{display:none;background:none;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:6px 10px;font-size:14px}
+
+/* hero */
+.hero{
+  position:relative;overflow:hidden;
+  padding:64px 0 56px;
+  border-bottom:1px solid var(--line);
+}
+.hero::before{
+  content:"";position:absolute;inset:-20% -10% auto auto;width:520px;height:520px;
+  background:radial-gradient(circle,rgba(255,204,77,.16),transparent 65%);
+  pointer-events:none;
+}
+.hero-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:44px;align-items:center;position:relative}
+.tag{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12.5px;color:var(--accent);
+  border:1px solid rgba(255,204,77,.35);
+  background:rgba(255,204,77,.08);
+  padding:5px 12px;border-radius:999px;margin-bottom:18px;
+}
+h1{
+  font-size:clamp(26px,3.6vw,42px);
+  line-height:1.3;margin:0 0 18px;font-weight:800;
+  letter-spacing:.3px;
+}
+.hero p{color:var(--muted);font-size:15.5px;margin:0 0 26px;max-width:46ch}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn-primary{
+  display:inline-block;padding:12px 26px;border-radius:12px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#1a1205;font-weight:700;font-size:15px;
+  transition:transform .18s ease,box-shadow .18s ease;
+  box-shadow:0 8px 22px rgba(255,107,74,.24);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(255,107,74,.32)}
+.btn-ghost{
+  display:inline-block;padding:11px 22px;border-radius:12px;
+  border:1px solid var(--line);color:var(--text);font-size:14.5px;
+}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.hero-art{
+  background:var(--bg-soft);border:1px solid var(--line);
+  border-radius:22px;padding:18px;box-shadow:0 20px 50px rgba(0,0,0,.35);
+}
+.hero-art figcaption{font-size:12.5px;color:var(--muted);margin-top:10px;text-align:center}
+
+/* stat strip */
+.stats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+  padding:26px 0;border-bottom:1px solid var(--line);
+}
+.stat{padding:6px 4px}
+.stat b{display:block;font-size:22px;color:var(--accent);font-weight:800;letter-spacing:.5px}
+.stat span{font-size:13px;color:var(--muted)}
+
+/* sections */
+section{padding:54px 0}
+.sec-head{margin-bottom:28px}
+.sec-head .kicker{font-size:12.5px;color:var(--accent);letter-spacing:2px;text-transform:uppercase}
+.sec-head h2{font-size:clamp(21px,2.4vw,27px);margin:8px 0 10px;font-weight:800}
+.sec-head p{color:var(--muted);font-size:14.5px;margin:0;max-width:62ch}
+
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px 20px;transition:border-color .2s,transform .2s;
+}
+.card:hover{border-color:rgba(255,204,77,.45);transform:translateY(-3px)}
+.card .num{font-size:12px;color:var(--accent2);font-weight:700;letter-spacing:1px}
+.card h3{font-size:16.5px;margin:8px 0 8px;font-weight:700}
+.card p{font-size:14px;color:var(--muted);margin:0}
+.card .meta{margin-top:14px;font-size:12.5px;color:#7d89a6}
+
+/* topic list */
+.topic-list{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line)}
+.topic{
+  display:grid;grid-template-columns:84px 1fr auto;gap:18px;align-items:center;
+  padding:20px 4px;border-bottom:1px solid var(--line);
+}
+.topic time{font-size:13px;color:var(--muted)}
+.topic h3{font-size:16px;margin:0 0 4px;font-weight:700}
+.topic p{margin:0;font-size:13.8px;color:var(--muted)}
+.topic .go{
+  font-size:13px;color:var(--accent);border:1px solid rgba(255,204,77,.35);
+  padding:5px 13px;border-radius:999px;white-space:nowrap;
+}
+.topic .go:hover{background:rgba(255,204,77,.1)}
+
+/* two column */
+.split{display:grid;grid-template-columns:1.1fr .9fr;gap:26px}
+.panel{
+  background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius);
+  padding:26px 24px;
+}
+.panel h2{font-size:19px;margin:0 0 14px;font-weight:800}
+.panel p{font-size:14.4px;color:var(--muted);margin:0 0 12px}
+.panel p:last-child{margin-bottom:0}
+.panel strong{color:var(--text);font-weight:600}
+.checklist{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.checklist li{display:flex;gap:10px;font-size:14.2px;color:var(--muted)}
+.checklist li::before{content:"";flex:0 0 8px;height:8px;margin-top:8px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2))}
+
+/* download */
+.download{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;
+  background:linear-gradient(135deg,rgba(255,204,77,.1),rgba(255,107,74,.08));
+  border:1px solid rgba(255,204,77,.28);border-radius:20px;padding:30px 28px;
+}
+.download h2{font-size:20px;margin:0 0 8px;font-weight:800}
+.download p{margin:0;font-size:14px;color:var(--muted);max-width:52ch}
+.btn-download{
+  display:inline-block;padding:12px 30px;border-radius:12px;
+  background:var(--accent);color:#1a1205;font-weight:800;font-size:15px;
+  pointer-events:none;opacity:.9;
+}
+
+/* footer */
+footer{
+  border-top:1px solid var(--line);
+  padding:34px 0 40px;margin-top:10px;
+  background:var(--bg-soft);
+}
+.foot-grid{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:flex-start}
+.foot-brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;margin-bottom:10px}
+.foot-desc{font-size:13px;color:var(--muted);max-width:44ch;margin:0}
+.foot-nav{display:flex;flex-wrap:wrap;gap:14px 22px;font-size:13.5px;color:var(--muted)}
+.foot-nav a:hover{color:var(--accent)}
+.copy{font-size:12.5px;color:#6d7894;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:30px}
+  .hero-art{order:-1}
+  .card-grid{grid-template-columns:1fr 1fr}
+  .split{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .menu-toggle{display:inline-block;margin-left:auto}
+  .nav-cta{margin-left:0}
+}
+@media(max-width:600px){
+  .card-grid{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr;gap:10px}
+  .topic{grid-template-columns:1fr;gap:8px}
+  .topic .go{justify-self:start}
+  .nav{gap:12px;flex-wrap:wrap}
+  .logo{font-size:14px}
+  .download{padding:24px 20px}
+  section{padding:40px 0}
+}
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="每日大赛主题大赛yandex 首页">
+      <svg width="30" height="30" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#1b2236"/>
+        <path d="M18 41l8-17 6 10 5-8 9 15" stroke="#ffcc4d" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="46" cy="20" r="4" fill="#ff6b4a"/>
+      </svg>
+      每日大赛主题大赛yandex
+    </a>
+    <button class="menu-toggle" type="button" aria-label="展开导航菜单" onclick="document.querySelector('.nav-links').style.display='flex'">菜单</button>
+    <nav class="nav-links" aria-label="主导航">
+      <a href="#today">今日主题</a>
+      <a href="#topics">热点看点</a>
+      <a href="#guide">围观路径</a>
+      <a href="#download">主题包</a>
+    </nav>
+    <a class="nav-cta" href="#today">进入今日主题</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="tag">● 每日更新 · 主题热点聚合</span>
+        <h1>每日大赛主题大赛yandex</h1>
+        <p>每天一场主题大赛，围绕当日主题汇集讨论看点、话题走向与围观入口。这里把散落各处的主题线索整理成一条清晰的阅读线，打开即可了解当前最受关注的每日大赛主题大赛yandex内容。</p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#today">看今日主题</a>
+          <a class="btn-ghost" href="#topics">浏览热点看点</a>
+        </div>
+      </div>
+      <figure class="hero-art" style="margin:0">
+        <svg viewBox="0 0 420 300" role="img" aria-label="每日大赛主题热度示意图" style="display:block;width:100%;height:auto">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ffcc4d"/>
+              <stop offset="1" stop-color="#ff6b4a"/>
+            </linearGradient>
+          </defs>
+          <rect x="0" y="0" width="420" height="300" rx="16" fill="#121728"/>
+          <g stroke="#2b3450" stroke-width="1">
+            <line x1="40" y1="60" x2="380" y2="60"/>
+            <line x1="40" y1="110" x2="380" y2="110"/>
+            <line x1="40" y1="160" x2="380" y2="160"/>
+            <line x1="40" y1="210" x2="380" y2="210"/>
+          </g>
+          <g>
+            <rect x="56" y="150" width="34" height="60" rx="5" fill="#2b3450"/>
+            <rect x="112" y="120" width="34" height="90" rx="5" fill="#2b3450"/>
+            <rect x="168" y="90" width="34" height="120" rx="5" fill="url(#g1)"/>
+            <rect x="224" y="132" width="34" height="78" rx="5" fill="#2b3450"/>
+            <rect x="280" y="72" width="34" height="138" rx="5" fill="url(#g1)" opacity=".75"/>
+            <rect x="336" y="106" width="34" height="104" rx="5" fill="#2b3450"/>
+          </g>
+          <path d="M56 148 L129 118 L185 86 L241 128 L297 68 L353 102" fill="none" stroke="#ffcc4d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 5"/>
+          <circle cx="185" cy="86" r="5" fill="#ff6b4a"/>
+          <circle cx="297" cy="68" r="5" fill="#ff6b4a"/>
+          <text x="40" y="262" fill="#9aa6c2" font-size="12" font-family="sans-serif">主题热度</text>
+          <text x="300" y="262" fill="#9aa6c2" font-size="12" font-family="sans-serif">近七日</text>
+        </svg>
+        <figcaption>每日大赛主题热度走势示意</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><b>每日一场</b><span>主题按天轮换，当日内容集中呈现</span></div>
+      <div class="stat"><b>多线索归集</b><span>讨论看点多角度并排展示</span></div>
+      <div class="stat"><b>快速围观</b><span>入口直达，减少查找成本</span></div>
+    </div>
+  </div>
+
+  <!-- TODAY -->
+  <section id="today">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker">TODAY</div>
+        <h2>今日主题速览</h2>
+        <p>每日大赛主题大赛yandex 的核心是“当天看什么”。下面几块内容分别承担主题概览、讨论焦点与围观提醒，方便按需进入。</p>
+      </div>
+      <div class="card-grid">
+        <article class="card">
+          <div class="num">01 / 主题概览</div>
+          <h3>当日主题是什么</h3>
+          <p>用一段话交代今天的主题方向与大致范围，让第一次接触每日大赛的读者也能迅速明白这场讨论围绕什么展开。</p>
+          <div class="meta">更新节奏：每日</div>
+        </article>
+        <article class="card">
+          <div class="num">02 / 讨论焦点</div>
+          <h3>大家在看哪里</h3>
+          <p>把当日被反复提及的细节点列为焦点条目，说明它们为什么被关注，避免只给结论不给来由。</p>
+          <div class="meta">线索来源：公开讨论</div>
+        </article>
+        <article class="card">
+          <div class="num">03 / 围观提醒</div>
+          <h3>阅读时留意什么</h3>
+          <p>提醒读者区分确凿内容与传闻说法，看到未经证实的表述时保持判断，这也是每日大赛主题大赛yandex 页面的基本态度。</p>
+          <div class="meta">建议：交叉比对</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOPICS -->
+  <section id="topics">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker">HIGHLIGHTS</div>
+        <h2>热点看点一览</h2>
+        <p>按时间顺序排列的看点条目，每条给出一个独立角度，读者可挑感兴趣的线索先看。</p>
+      </div>
+      <div class="topic-list">
+        <div class="topic">
+          <time>主题线索</time>
+          <div>
+            <h3>主题关键词如何被提炼</h3>
+            <p>说明每日大赛的主题词是怎样从大量讨论中被归纳出来的，以及同一主题下可能存在的分支方向。</p>
+          </div>
+          <a class="go" href="#guide">查看路径</a>
+        </div>
+        <div class="topic">
+          <time>讨论脉络</time>
+          <div>
+            <h3>话题从哪来、往哪去</h3>
+            <p>梳理每日大赛主题大赛yandex 当日话题的起势节点与后续延伸，帮助读者理解讨论的先后顺序。</p>
+          </div>
+          <a class="go" href="#guide">查看路径</a>
+        </div>
+        <div class="topic">
+          <time>阅读建议</time>
+          <div>
+            <h3>先看结论还是先看过程</h3>
+            <p>不同读者需求不同：有人只想快速知道热点，有人愿意顺着线索逐条读，本页两种方式都留有入口。</p>
+          </div>
+          <a class="go" href="#guide">查看路径</a>
+        </div>
+        <div class="topic">
+          <time>更新说明</time>
+          <div>
+            <h3>主题随日期变化</h3>
+            <p>每日大赛主题大赛yandex 的内容以当天为准，往期主题作为背景保留，但不代表当前热点。</p>
+          </div>
+          <a class="go" href="#guide">查看路径</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUIDE -->
+  <section id="guide">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker">HOW TO READ</div>
+        <h2>围观路径与阅读分工</h2>
+        <p>把页面拆成“先看什么、再看什么”，让不同停留时长的读者都能带走有效内容。</p>
+      </div>
+      <div class="split">
+        <div class="panel">
+          <h2>三步读完一场主题大赛</h2>
+          <p><strong>第一步，看主题概览。</strong>先确认今天讨论的核心对象，避免把往期内容误当今日热点。</p>
+          <p><strong>第二步，看焦点条目。</strong>焦点条目按关注度排列，每条只讲一个点，读完即可判断是否需要深入。</p>
+          <p><strong>第三步，回看脉络。</strong>若时间充裕，再顺着讨论脉络把前后因果串起来，理解每日大赛主题大赛yandex 当日话题的完整走向。</p>
+          <p>这样的顺序减少来回跳转，也让第一次访问的人在几分钟内建立基本印象。</p>
+        </div>
+        <div class="panel">
+          <h2>阅读时值得确认的几点</h2>
+          <ul class="checklist">
+            <li>主题是否与日期对应，避免旧内容混淆。</li>
+            <li>焦点描述是否给出了具体来由，而非空泛评价。</li>
+            <li>传闻类说法是否标注了不确定状态。</li>
+            <li>入口链接是否指向本页真实区块。</li>
+            <li>对每日大赛主题大赛yandex 的表述是否保持在同一主题范围内。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD -->
+  <section id="download">
+    <div class="wrap">
+      <div class="download">
+        <div>
+          <h2>主题包下载</h2>
+          <p>把当日主题概览、看点条目与阅读清单整理成一份主题包，便于离线保存或转发给一起围观的伙伴。</p>
+        </div>
+        <a class="btn-download" href="#" data-download-placeholder="true" aria-disabled="true" tabindex="-1">下载</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <svg width="24" height="24" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="14" fill="#1b2236"/>
+            <path d="M18 41l8-17 6 10 5-8 9 15" stroke="#ffcc4d" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="46" cy="20" r="4" fill="#ff6b4a"/>
+          </svg>
+          每日大赛主题大赛yandex
+        </div>
+        <p class="foot-desc">围绕每日大赛的主题热点与讨论看点做归集，帮助读者在最短时间内看懂当天在说什么。</p>
+      </div>
+      <nav class="foot-nav" aria-label="页尾导航">
+        <a href="#today">今日主题</a>
+        <a href="#topics">热点看点</a>
+        <a href="#guide">围观路径</a>
+        <a href="#download">主题包</a>
+      </nav>
+    </div>
+    <p class="copy">每日大赛主题大赛yandex · 主题内容随日期更新，页面信息以公开讨论为依据，仅供围观阅读。</p>
+  </div>
+</footer>
+
+</body>
+</html>
